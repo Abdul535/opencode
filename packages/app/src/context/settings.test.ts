@@ -5,12 +5,19 @@ import {
   isAppUpgrade,
   layoutTransitionState,
   maximumSunsetTimeout,
+  monoFontFamily,
   newLayoutDesignsDefault,
   nextSunsetCheckDelay,
   resolveNewLayoutDesigns,
   shouldDisplayTabsToast,
   shouldEnableNewLayout,
 } from "./settings"
+
+describe("font fallback", () => {
+  test("uses the system UI font for glyphs missing from monospace fonts", () => {
+    expect(monoFontFamily(undefined)).toContain('"Courier New", system-ui, sans-serif, monospace')
+  })
+})
 
 describe("agent visibility", () => {
   test("shows the picker for existing profiles and hides it for first-time installs", () => {
